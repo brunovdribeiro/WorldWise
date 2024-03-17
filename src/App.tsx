@@ -8,11 +8,13 @@ import Login from "./pages/Login.tsx";
 import AppLayout from "./pages/AppLayout.tsx";
 import CityList from "./components/CityList.tsx";
 import { useEffect, useState } from "react";
+import CountryList from "./components/CountryList.tsx";
 
 const ApiUrl = "http://localhost:8000";
 
 export type CityModel = {
     id: number,
+    country: string,
     cityName: string,
     emoji: string,
     date: string
@@ -50,7 +52,7 @@ function App() {
                     <Route path="app" element={<AppLayout />}>
                         <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
                         <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
-                        <Route path="countries" element={<p>List of countries</p>} />
+                        <Route path="countries" element={<CountryList cities={cities} isLoading={isLoading} />} />
                         <Route path="form" element={<p>Form</p>} />
                     </Route>
                     <Route path="*" element={<PageNotFound />} />
