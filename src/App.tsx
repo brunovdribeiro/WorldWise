@@ -12,7 +12,10 @@ import { useEffect, useState } from "react";
 const ApiUrl = "http://localhost:8000";
 
 export type CityModel = {
-    cityName: string
+    id: number,
+    cityName: string,
+    emoji: string,
+    date: string
 }
 
 function App() {
@@ -38,23 +41,21 @@ function App() {
     }, []);
 
     return (
-            <>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Homepage />} />
-                        <Route path="/products" element={<Product />} />
-                        <Route path="/pricing" element={<Pricing />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="app" element={<AppLayout />}>
-                            <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
-                            <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
-                            <Route path="countries" element={<p>List of countries</p>} />
-                            <Route path="form" element={<p>Form</p>} />
-                        </Route>
-                        <Route path="*" element={<PageNotFound />} />
-                    </Routes>
-                </BrowserRouter>
-            </>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/products" element={<Product />} />
+                    <Route path="/pricing" element={<Pricing />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="app" element={<AppLayout />}>
+                        <Route index element={<CityList cities={cities} isLoading={isLoading} />} />
+                        <Route path="cities" element={<CityList cities={cities} isLoading={isLoading} />} />
+                        <Route path="countries" element={<p>List of countries</p>} />
+                        <Route path="form" element={<p>Form</p>} />
+                    </Route>
+                    <Route path="*" element={<PageNotFound />} />
+                </Routes>
+            </BrowserRouter>
     );
 }
 
