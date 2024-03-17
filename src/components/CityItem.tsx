@@ -10,7 +10,7 @@ const formatDate = (date: string) =>
 
 export const CityItem = ({city}: { city: CityModel }) => {
     return (
-            <li className={style.cityItem} key={city.id}>
+            <li className={style.cityItem}>
                 <span className={style.emoji}>{city.emoji}</span>
                 <h3 className={style.name}>{city.cityName}</h3>
                 <time className={style.date}>{formatDate(city.date)}</time>
