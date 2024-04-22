@@ -2,14 +2,8 @@ import Spinner from "./Spinner.tsx";
 import { useMemo } from "react";
 import Message from "./Message.tsx";
 import style from "./CountryList.module.css";
-import { CityModel } from "../App.tsx";
 import CountryItem from "./CountryItem.tsx";
-
-type CountryListProps = {
-    cities: CityModel[],
-    isLoading: boolean,
-
-}
+import { useCities } from "../contexts/CitiesContext.tsx";
 
 type CountryModel = {
     country: string,
@@ -17,9 +11,11 @@ type CountryModel = {
 }
 
 const initialState: CountryModel[] = [];
-export const CountryList = (props: CountryListProps) => {
+export const CountryList = () => {
 
-    const countries = props.cities.reduce((arr, cur) => {
+    const {cities, isLoading} = useCities()
+
+    const countries = cities.reduce((arr, cur) => {
         if (arr.map(el => el.country).includes(cur.country))
             return arr;
 
@@ -33,9 +29,9 @@ export const CountryList = (props: CountryListProps) => {
     </ul>, [countries]);
     const noCities = useMemo(() => <Message message="Add your first city by clicking on a city on the map" />, [])
 
-    if (props.isLoading) return loader;
+    if (isLoading) return loader;
 
-    if (props.cities.length) return countriesView;
+    if (cities.length) return countriesView;
 
     return noCities;
 };

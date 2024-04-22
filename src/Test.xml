@@ -1,0 +1,18 @@
+<diagram name="Population of the Bucket - Class Diagram">
+    <mxGraphModel>
+        <root>
+            <mxCell id="0" />
+            <mxCell id="1" parent="0" />
+            <mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="ApplicationExistente" vertex="1">
+                <mxGeometry as="geometry" height="60" width="140" x="20" y="20" />
+            </mxCell>
+            <mxCell id="3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="ServidorSemEstado" vertex="1">
+                <mxGeometry as="geometry" height="60" width="140" x="220" y="20" />
+            </mxCell>
+            <mxCell id="4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="TriggerDeTabela" vertex="1">
+                <mxGeometry as="geometry" height="60" width="140" x="420" y="20" />
+            </mxCell>
+        </root>
+    </mxGraphModel>
+</diagram>
+

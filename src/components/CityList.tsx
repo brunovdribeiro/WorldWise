@@ -1,16 +1,13 @@
 import style from './CityList.module.css';
-import { CityModel } from "../App.tsx";
 import Spinner from "./Spinner.tsx";
 import CityItem from "./CityItem.tsx";
 import { useMemo } from "react";
 import Message from "./Message.tsx";
+import { useCities } from '../contexts/CitiesContext.tsx';
 
-type CityListProps = {
-    cities: CityModel[],
-    isLoading: boolean
-}
+export const CityList = () => {
+    const props = useCities();
 
-export const CityList = (props: CityListProps) => {
     const loader = useMemo(() => <Spinner />, []);
     const cities = useMemo(() => <ul className={style.cityList}>
         {props.cities.map(city => <CityItem key={city.id} city={city} />)}
