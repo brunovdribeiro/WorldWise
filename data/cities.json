@@ -35,6 +35,54 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Makokou",
+      "country": "Gabon",
+      "emoji": "🇬🇦",
+      "date": "Tue Apr 23 2024 21:36:04 GMT+0100 (British Summer Time)",
+      "notes": "Was amazing",
+      "position": {
+        "lat": 0.13183582116662096,
+        "lng": 12.348632812500002
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "District 8",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "Tue Apr 23 2024 21:38:17 GMT+0100 (British Summer Time)",
+      "notes": "Was good, not amazing",
+      "position": {
+        "lat": 35.639441068973944,
+        "lng": -86.98974609375
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Ughelli",
+      "country": "Nigeria",
+      "emoji": "🇳🇬",
+      "date": "Tue Apr 23 2024 21:43:02 GMT+0100 (British Summer Time)",
+      "notes": "",
+      "position": {
+        "lat": 5.528510525692801,
+        "lng": 6.08642578125
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Tillaberi",
+      "country": "Niger (the)",
+      "emoji": "🇳🇪",
+      "date": "Tue Apr 23 2024 21:46:05 GMT+0100 (British Summer Time)",
+      "notes": "",
+      "position": {
+        "lat": 14.562317701914855,
+        "lng": 1.3183593750000002
+      },
+      "id": 98443201
     }
   ]
 }

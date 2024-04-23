@@ -5,7 +5,7 @@ type CitiesProviderProps = {
 }
 
 export type CityModel = {
-    id: number,
+    id: number | undefined,
     country: string,
     cityName: string,
     emoji: string,
@@ -20,21 +20,28 @@ export type PositionModel = {
 }
 
 type CityContextModel = {
-    cities : CityModel[],
+    cities: CityModel[],
     isLoading: boolean,
     currentCity: CityModel,
-    getCity: (id: number )=> void
+    getCity: (id: number) => void,
+    createCity: ((newCity: CityModel)=> Promise<void>)| undefined
 }
 
-const defaultCityModel : CityModel = {id: 0, cityName: '', country: '', date: '', emoji: '', notes: '' }
-const defaultCityContextModel : CityContextModel = { cities: [], currentCity: defaultCityModel, isLoading: false, getCity: (id)=> id }
+const defaultCityModel: CityModel = { id: 0, cityName: '', country: '', date: '', emoji: '', notes: '', position: {lat: 0, lng: 0} }
+const defaultCityContextModel: CityContextModel = {
+    cities: [],
+    currentCity: defaultCityModel, 
+    isLoading: false, 
+    getCity: (id) => id,
+    createCity: undefined
+}
 
 
 const CitiesContext = createContext<CityContextModel>(defaultCityContextModel);
 
 const ApiUrl = "http://localhost:8000";
 
-const CitiesProvider = ( {children} : CitiesProviderProps )=> {
+const CitiesProvider = ({ children }: CitiesProviderProps) => {
     const [cities, setCities] = useState<CityModel[]>([])
     const [currentCity, setCurrentCity] = useState<CityModel>(defaultCityModel)
     const [isLoading, setIsLoading] = useState(false)
@@ -72,13 +79,30 @@ const CitiesProvider = ( {children} : CitiesProviderProps )=> {
         }
     }
 
+    const createCity = async (newCity: CityModel) => {
+        try {
+            setIsLoading(true);
+            const response = await fetch(`${ApiUrl}/cities`, {
+                method: 'POST', body: JSON.stringify(newCity),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+
+            setCities(cities=> [...cities, data])
+        } catch {
+            alert("There was an error loading data...");
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     return (
-    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>
-        {children}
-    </CitiesContext.Provider>)
+        <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity }}>
+            {children}
+        </CitiesContext.Provider>)
 }
 
-const useCities = ()=> {
+const useCities = () => {
     const context = useContext(CitiesContext)
 
     if (!context)
@@ -87,4 +111,4 @@ const useCities = ()=> {
     return context
 }
 
-export {CitiesProvider, useCities}
+export { CitiesProvider, useCities }
